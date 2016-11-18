@@ -206,8 +206,23 @@ public class Mapa extends JComponent implements Constantes {
                     return false;
                 }
             }
+        }else if(celda.x>5 && celda.y>=NUM_CELDAS_HEIGHT-4 ){
+            int xc=celda.x;
+            int yc=celda.y+1;
+            boolean puedeCruzar=true;
+            int veces=4;
+            while(veces>0){
+                if(celdas[xc][yc].tipo!='V'){
+                    xc++;
+                    veces--;
+
+                } else {
+                    return false;
+                }
+            }
         }
-    
+            
+       
         return true;
         
         
@@ -269,7 +284,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoIzquierda(Celdas celda) {
-         if(celda.y<NUM_CELDAS_HEIGHT-1 && celda.y>2 && celda.x>2) {
+         if(celda.y<NUM_CELDAS_HEIGHT-4 && celda.y>2 && celda.x>2) {
             int xc=celda.x-1;
             int yc=celda.y;
             int veces=4;
@@ -300,11 +315,27 @@ public class Mapa extends JComponent implements Constantes {
             }
             
     }
+         else if(celda.y>=NUM_CELDAS_HEIGHT-4){
+            int xc=celda.x-2;
+            int yc=celda.y;
+            int veces=4;
+            while(veces>0){
+                
+                if(celdas[xc][yc].tipo!='V'){
+                    
+                    yc--;
+                    veces--;
+
+                } else {
+                    return false;
+                }
+            }
+         }
         return true;
     }
 
     boolean noHayAutoDerecha(Celdas celda) {
-        if(celda.y<NUM_CELDAS_HEIGHT-1 && celda.y>2 && celda.x>2) {
+        if(celda.y<NUM_CELDAS_HEIGHT-1 && celda.y>2 && celda.x>2 && celda.x<NUM_CELDAS_WIDTH-6) {
             int xc=celda.x+1;
             int yc=celda.y;
             int veces=4;
@@ -334,7 +365,8 @@ public class Mapa extends JComponent implements Constantes {
                 }
             }
             
-    }
+        }
+        
         return true;
     }
     
