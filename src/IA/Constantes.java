@@ -5,11 +5,12 @@ import java.util.Random;
 
 
 public interface Constantes {
-    public final int TAM_CELDA=31;
+    public final int TAM_CELDA=31   ;
     public final int NUM_CELDAS_WIDTH=40;
     public final int NUM_CELDAS_HEIGHT=21;
     public final int TAM_WIDTH=TAM_CELDA*NUM_CELDAS_WIDTH;
     public final int TAM_HEIGHT=TAM_CELDA*NUM_CELDAS_HEIGHT;
+    public final int NUM_PEATONES=3;
     public final char JUGADOR='J';
     public final char CAMINO='C';
     public final char CARRETERA_INF='I';
@@ -27,6 +28,7 @@ public interface Constantes {
     public final char INICIOCARTERO='Z';
     public final char PEATONAL_HOR='X';
     public final char PEATONAL_VERT='Y';
+    public final char MICRO='M';
     
     default int numeroAleatorio(int minimo, int maximo) {
         Random random = new Random();

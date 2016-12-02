@@ -33,7 +33,7 @@ public class Autos extends TimerTask implements Constantes{
   
     }
     public void moverDerecha(){
-
+        
         if (mapa.celdas[celdaMovimiento.x+1][celdaMovimiento.y].noHayPersona()){
             char t=celdaMovimiento.saberTipo();
             celdaMovimiento.tipo=mapa.celdas[celdaMovimiento.x+1][celdaMovimiento.y].tipo;

@@ -19,15 +19,20 @@ public class Mapa extends JComponent implements Constantes {
         crearAcera();
         crearCarreteras();
         crearEdificios();
- 
-        
+        crearPortales();
         repaint();
         
         this.setSize(TAM_WIDTH, TAM_HEIGHT);
     }
 
         
-    
+    private void crearPortales(){
+        
+        celdas[10][2]= new Celdas(10+(10 * TAM_CELDA), 2 + (2 * TAM_CELDA),'P');
+        celdas[10][8]=new  Celdas(10+(10 * TAM_CELDA), 8 + (8 * TAM_CELDA),'P');
+        celdas[20][8]=new  Celdas(20+(20 * TAM_CELDA), 8 + (8 * TAM_CELDA),'P');
+
+    }
     
     private void crearEdificios(){
         crearDepartamentos(2,4);
@@ -149,7 +154,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoAbajo(Celdas celda) {
-        if(celda.x<NUM_CELDAS_WIDTH-2 && celda.x>2 && celda.y<NUM_CELDAS_HEIGHT-4) {
+        if(celdas[celda.x][celda.y+1].esPasoPeatonal() && celda.x<NUM_CELDAS_WIDTH-2 && celda.x>2 && celda.y<NUM_CELDAS_HEIGHT-4) {
             int xc=celda.x;
             int yc=celda.y+2;
             boolean puedeCruzar=true;
@@ -229,7 +234,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoArriba(Celdas celda) {
-        if(celda.x<NUM_CELDAS_WIDTH-2 && celda.x>2 && celda.y>2) {
+        if(celdas[celda.x][celda.y-1].esPasoPeatonal()  && celda.x<NUM_CELDAS_WIDTH-2 && celda.x>2 && celda.y>2) {
             int xc=celda.x;
             int yc=celda.y-1;
             boolean puedeCruzar=true;
@@ -284,7 +289,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoIzquierda(Celdas celda) {
-         if(celda.y<NUM_CELDAS_HEIGHT-4 && celda.y>2 && celda.x>2) {
+         if(celdas[celda.x-1][celda.y].esPasoPeatonal()  && celda.y<NUM_CELDAS_HEIGHT-4 && celda.y>2 && celda.x>2) {
             int xc=celda.x-1;
             int yc=celda.y;
             int veces=4;
@@ -335,7 +340,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoDerecha(Celdas celda) {
-        if(celda.y<NUM_CELDAS_HEIGHT-1 && celda.y>2 && celda.x>2 && celda.x<NUM_CELDAS_WIDTH-6) {
+        if(celdas[celda.x+1][celda.y].esPasoPeatonal()  && celda.y<NUM_CELDAS_HEIGHT-1 && celda.y>2 && celda.x>2 && celda.x<NUM_CELDAS_WIDTH-6) {
             int xc=celda.x+1;
             int yc=celda.y;
             int veces=4;
@@ -369,6 +374,14 @@ public class Mapa extends JComponent implements Constantes {
         
         return true;
     }
+
+    void carteroEnPortal() {
+        
+    }
+
+ 
+
+
     
     
 

@@ -9,7 +9,7 @@ public class Cartero implements Constantes{
     public Mapa mapa;
     public Celdas cartero;
     public Celdas celdaMovimiento;
-    
+    public BusquedaAnchura inteligencia;
 
 
 
@@ -18,6 +18,7 @@ public class Cartero implements Constantes{
         celdaMovimiento= new Celdas(NUM_CELDAS_WIDTH-1,1,mapa.celdas[NUM_CELDAS_WIDTH-1][1].tipo);
         cartero=new Celdas(NUM_CELDAS_WIDTH-1,1,mapa.celdas[NUM_CELDAS_WIDTH-1][1].tipo);
         mapa.celdas[cartero.x][cartero.y].tipo='Z';
+        inteligencia= new BusquedaAnchura(mapa,this);
         mapa.repaint();
     }
   public void moverCelda(KeyEvent e) {
@@ -39,7 +40,7 @@ public class Cartero implements Constantes{
         }
      
     }
-   private void moverArriba() {
+   public void moverArriba() {
         if(celdaMovimiento.y>0){
            
             if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y-1].puedeMoverse() && mapa.noHayAutoArriba(celdaMovimiento) ) {
@@ -60,7 +61,10 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
                 
              
-        
+        if(celdaMovimiento.tipo=='P'){
+                    
+                }
+  
                         
             
             }
@@ -70,7 +74,7 @@ public class Cartero implements Constantes{
        }
    }
     //Metodo movimiento izquierda
-    private void moverIzquierda() {
+    public void moverIzquierda() {
         if (celdaMovimiento.x>0)
             if(mapa.celdas[celdaMovimiento.x-1][celdaMovimiento.y].puedeMoverse() && mapa.noHayAutoIzquierda(celdaMovimiento)){
                 char t=celdaMovimiento.saberTipo();
@@ -85,10 +89,13 @@ public class Cartero implements Constantes{
                 }
                 
                 celdaMovimiento.x=celdaMovimiento.x-1;
-                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J'; 
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
 
+                if(celdaMovimiento.tipo=='P'){
+                    
+                }
   
 
             
@@ -96,7 +103,7 @@ public class Cartero implements Constantes{
     }
 
     //Metodo movimiento derecha
-    private void moverDerecha() {
+    public void moverDerecha() {
         if (celdaMovimiento.x<NUM_CELDAS_WIDTH-1) 
             if(mapa.celdas[celdaMovimiento.x+1][celdaMovimiento.y].puedeMoverse() && mapa.noHayAutoDerecha(celdaMovimiento)){
                 char t=celdaMovimiento.saberTipo();
@@ -113,15 +120,18 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-
+                if(celdaMovimiento.tipo=='P'){
+                    
+                }
+  
             }
     }
 
     //Metodo movimiento abajo
-    private void moverAbajo() {
+    public void moverAbajo() {
         if(celdaMovimiento.y<NUM_CELDAS_HEIGHT-1){
-            if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].puedeMoverse()  && mapa.noHayAutoAbajo(celdaMovimiento)  ) {
-                
+            
+            if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].puedeMoverse()  &&  mapa.noHayAutoAbajo(celdaMovimiento)  ) {
                         char t=celdaMovimiento.saberTipo();
                         celdaMovimiento.tipo=mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].tipo;
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo=t;                
@@ -137,7 +147,10 @@ public class Cartero implements Constantes{
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-
+                        if(celdaMovimiento.tipo=='P'){
+                    
+                }
+  
                            
 
             }

@@ -1,13 +1,22 @@
 package IA;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.text.AttributedCharacterIterator;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 public class Celdas extends JComponent implements Constantes{
@@ -19,7 +28,7 @@ public class Celdas extends JComponent implements Constantes{
     int sprite;
     BufferedImage camino, block, portal, acera, peaton, carretera_inf,carretera_sup,carretera_der,
                 carretera_izq, carretera_esq, departamento, casa, jugadorprincipio, peatonal_ver, 
-                peatonal_hor;
+                peatonal_hor, micro;
     BufferedImage sjugador[][], jugador, svehiculo[], vehiculo;
     
     public Celdas(int x, int y, char tipo){
@@ -49,6 +58,7 @@ public class Celdas extends JComponent implements Constantes{
             casa=ImageIO.read(new File("imagenes/casa.png"));
             jugadorprincipio=ImageIO.read(new File("imagenes/cartero-inicio.png"));
             sjugador= new BufferedImage[4][4];
+            micro=ImageIO.read(new File("imagenes/micro.png"));
             
             for(int i = 0; i < 4; i++) {
                 for(int j = 0; j < 4; j++) {
@@ -82,7 +92,9 @@ public class Celdas extends JComponent implements Constantes{
             case 'B':
                 g.drawImage(block, x, y,this); break;
             case 'P':
-                g.drawImage(portal, x, y,this); break;
+                g.drawImage(portal, x, y,this); 
+
+                break;
             case 'A':
                 g.drawImage(acera, x,y,this); break;
             case 'O':
@@ -112,6 +124,8 @@ public class Celdas extends JComponent implements Constantes{
                 g.drawImage(peatonal_hor, x,y,this); break;
             case 'Y':
                 g.drawImage(peatonal_ver, x,y,this); break;
+            case 'M':
+                g.drawImage(micro, x,y,this); break;
                 
                 
             
@@ -149,6 +163,7 @@ public class Celdas extends JComponent implements Constantes{
             case 'D':return c;
             case 'X': return c;
             case 'Y': return c;
+            case 'M': return c;
                 
          }
          return 0;
@@ -159,6 +174,7 @@ public class Celdas extends JComponent implements Constantes{
             case 'X': return true;
             case 'Y': return true;
             case 'C': return true;
+            case 'P':  return true;
             default: return false;   
         }
     }
@@ -173,6 +189,20 @@ public class Celdas extends JComponent implements Constantes{
             default: return true; 
         }
     }
+
+    boolean esPasoPeatonal() {
+        switch(tipo){
+            case 'X': return true;
+            case 'Y': return true;
+            default: return false; 
+        }
+    }
+
+    
+
+
+
+ 
     
   
    
