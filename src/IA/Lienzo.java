@@ -66,7 +66,7 @@ public class Lienzo extends Canvas implements Constantes{
       
       cartero.inteligencia.destinos.add(new Estado(10,8,'N',null));
       cartero.inteligencia.destinos.add(new Estado(10,2,'N',null));
-      cartero.inteligencia.destinos.add(new Estado(20,8,'N',null));
+      cartero.inteligencia.destinos.add(new Estado(20,11,'N',null));
       
       
       lanzadorTareas= new Timer();
