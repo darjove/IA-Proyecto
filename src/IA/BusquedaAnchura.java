@@ -77,7 +77,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
     
     private void moverArriba(Estado e) {  
         if ( e.y > 0 ) {
-            if ( mapa.celdas[e.x][e.y-1].tipo != 'O' ) { 
+            if ( mapa.celdas[e.x][e.y-1].puedeMoverse() ) { 
                  Estado arriba=new Estado(e.x,e.y-1,'U',e);
                  if ( !historial.contains(arriba)) {
                     colaEstados.add(arriba);
@@ -95,7 +95,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
     private void moverAbajo(Estado e) {
        
         if ( e.y+1 < NUM_CELDAS_HEIGHT-1 ) { 
-            if ( mapa.celdas[e.x][e.y+1].tipo != 'O' ) {
+            if ( mapa.celdas[e.x][e.y+1].puedeMoverse()) {
                  Estado abajo=new Estado(e.x,e.y+1,'D',e);   
                  if ( !historial.contains(abajo)) {
                     colaEstados.add(abajo);
@@ -113,7 +113,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
     
     private void moverIzquierda(Estado e) {
         if ( e.x > 0 ) {
-            if ( mapa.celdas[e.x-1][e.y].tipo != 'O' ) {
+            if ( mapa.celdas[e.x-1][e.y].puedeMoverse()) {
                 Estado izquierda=new Estado(e.x-1,e.y,'L',e);
                 if ( !historial.contains(izquierda)) {
                     
@@ -133,7 +133,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
     private void moverDerecha(Estado e) {
         
         if ( e.x < NUM_CELDAS_WIDTH-1 ) {
-            if ( mapa.celdas[e.x+1][e.y].tipo != 'O' ) {
+            if ( mapa.celdas[e.x+1][e.y].puedeMoverse()) {
                Estado derecha=new Estado(e.x+1,e.y,'R',e); 
                if ( !historial.contains(derecha)){
                  colaEstados.add(derecha);
@@ -171,18 +171,22 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
           boolean resultado;
           
           do{
-              
-              subinicial=new Estado(cartero.celdaMovimiento.x,
-                                cartero.celdaMovimiento.y,'N',null);
-              
+             subinicial=new Estado(cartero.celdaMovimiento.x,
+                                cartero.celdaMovimiento.y,'N',null);    
+             
+          
               subobjetivo=destinos.get(0);
               resultado=this.buscar(subinicial,subobjetivo);
-          
-              if ( subinicial.equals(subobjetivo) ) 
-                  destinos.remove(subobjetivo);
+              
+              if ( subinicial.equals(subobjetivo) ) {
+
+                destinos.remove(subobjetivo);
+
+
+              }
+                  
               else 
                   if ( !resultado) {
-                      
                       colaEstados.clear();
                       historial.clear();
                       pasos.clear(); 

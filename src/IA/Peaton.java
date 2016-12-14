@@ -32,7 +32,7 @@ public class Peaton implements Constantes {
     public Celdas celdaMovimiento;
     public int npeaton;
 
-    Peaton(Mapa mapa, Point p, int n){
+    public Peaton(Mapa mapa, Point p, int n){
         this.mapa=mapa;
         celdaMovimiento=new Celdas(p.x, p.y,mapa.celdas[p.x][p.y].tipo);
         peaton= new Celdas(p.x,p.y,mapa.celdas[p.x][p.y].tipo);

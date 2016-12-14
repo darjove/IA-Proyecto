@@ -25,7 +25,7 @@ public class Estado {
         return this.x==e.x && this.y==e.y; 
     }
     public int hashCode() { 
-        int hash = 3; 
+        int hash = 3;
         hash = 89 * hash + this.x;
         hash = 89 * hash + this.y; 
         return hash; 
