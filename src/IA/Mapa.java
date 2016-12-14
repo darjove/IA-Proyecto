@@ -17,15 +17,19 @@ public class Mapa extends JComponent implements Constantes {
 
         this.lienzoPadre=lienzoPadre;
         crearAcera();
+
         crearCarreteras();
         crearEdificios();
+
         crearPortales();
+     
+        
+        
         repaint();
         
         this.setSize(TAM_WIDTH, TAM_HEIGHT);
     }
-
-        
+ 
     private void crearPortales(){
         
         celdas[10][2]= new Celdas(10+(10 * TAM_CELDA), 2 + (2 * TAM_CELDA),'P');

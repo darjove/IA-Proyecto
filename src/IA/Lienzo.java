@@ -23,12 +23,28 @@ public class Lienzo extends Canvas implements Constantes{
     public Cartero cartero;
     public Timer lanzadorTareas;
     public Micro micro;
-    
+    public Cuadra[][] cuadras;
     public Lienzo(){
       this.mapa=new Mapa(this);  
       cartero= new Cartero(mapa);
       autos= new Autos[5];
-      Point aux= new Point(8,9);      
+      
+      cuadras= new Cuadra[3][6];
+      
+      
+      
+      
+      
+      for(int j=0;j<3;j++){
+          for(int i=0; i<6;i++){
+              int random=(int)Math.floor(Math.random()*(101));
+              cuadras[j][i]= new Cuadra(i*4+2*(i+1),j*4+2*(j+1),random,this.mapa);
+              cuadras[j][i].establecerCuadra(random);
+          }
+      }
+      
+      imprimirMapa();
+      
       Point pmin=new Point(1,1);
       Point pmax= new Point(6,18);
       autos[0]= new Autos(mapa,pmin,pmax);
@@ -77,6 +93,15 @@ public class Lienzo extends Canvas implements Constantes{
       lanzadorTareas.scheduleAtFixedRate(autos[1],0,300);
       lanzadorTareas.scheduleAtFixedRate(autos[2],0,500);
       lanzadorTareas.scheduleAtFixedRate(autos[3],0,300);
+    }
+    public void imprimirMapa(){
+        for(int i=0; i<NUM_CELDAS_WIDTH;i++){
+            for(int j=0; j<NUM_CELDAS_HEIGHT;j++){
+                System.out.print(mapa.celdas[i][j].npeatones + " ");
+            }
+            System.out.println("");
+        }
+        
     }
     public void update(Graphics g) {
         mapa.update(g);

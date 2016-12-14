@@ -26,6 +26,7 @@ public class Celdas extends JComponent implements Constantes{
     int xsprite;
     int ysprite;
     int sprite;
+    int npeatones;
     BufferedImage camino, block, portal, acera, peaton, carretera_inf,carretera_sup,carretera_der,
                 carretera_izq, carretera_esq, departamento, casa, jugadorprincipio, peatonal_ver, 
                 peatonal_hor, micro;

@@ -42,8 +42,6 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
     }
     
     public boolean buscar(Estado inicial,Estado objetivo) {
-        
-
         index_pasos=0;
         colaEstados.add(inicial);
         historial.add(inicial);
