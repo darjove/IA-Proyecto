@@ -40,7 +40,7 @@ public class Cartero implements Constantes{
         }
      
     }
-   public void moverArriba() {
+   public boolean moverArriba() {
         if(celdaMovimiento.y>0){
            
             if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y-1].puedeMoverse() && mapa.noHayAutoArriba(celdaMovimiento) ) {
@@ -60,21 +60,20 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
                 
-             
-        if(celdaMovimiento.tipo=='P'){
-                    
-                }
+                return true;
+     
   
                         
             
             }
 
-
+            
 
        }
+        return false;
    }
     //Metodo movimiento izquierda
-    public void moverIzquierda() {
+    public boolean moverIzquierda() {
         if (celdaMovimiento.x>0)
             if(mapa.celdas[celdaMovimiento.x-1][celdaMovimiento.y].puedeMoverse() && mapa.noHayAutoIzquierda(celdaMovimiento)){
                 char t=celdaMovimiento.saberTipo();
@@ -93,17 +92,16 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
 
-                if(celdaMovimiento.tipo=='P'){
-                    
-                }
+                return true;
   
 
             
         }
+        return false;
     }
 
     //Metodo movimiento derecha
-    public void moverDerecha() {
+    public boolean moverDerecha() {
         if (celdaMovimiento.x<NUM_CELDAS_WIDTH-1) 
             if(mapa.celdas[celdaMovimiento.x+1][celdaMovimiento.y].puedeMoverse() && mapa.noHayAutoDerecha(celdaMovimiento)){
                 char t=celdaMovimiento.saberTipo();
@@ -120,15 +118,14 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                if(celdaMovimiento.tipo=='P'){
-                    
-                }
+                return true;
   
             }
+        return false;
     }
 
     //Metodo movimiento abajo
-    public void moverAbajo() {
+    public boolean moverAbajo() {
         if(celdaMovimiento.y<NUM_CELDAS_HEIGHT-1){
             
             if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].puedeMoverse()  &&  mapa.noHayAutoAbajo(celdaMovimiento)  ) {
@@ -147,14 +144,12 @@ public class Cartero implements Constantes{
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                        if(celdaMovimiento.tipo=='P'){
-                    
-                }
-  
+                        return true;
                            
 
             }
         }
+        return false;
     }
     public void activarJugador(int i, int j){ 
         cartero.tipo='Z';

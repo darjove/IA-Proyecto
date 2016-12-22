@@ -127,6 +127,13 @@ public class Celdas extends JComponent implements Constantes{
                 g.drawImage(peatonal_ver, x,y,this); break;
             case 'M':
                 g.drawImage(micro, x,y,this); break;
+            case 'Q':
+                g.drawImage(camino, x, y, this); 
+                String np= String.valueOf(npeatones);
+                g.setColor(Color.WHITE);
+                g.drawString(np, x+10, y+10);
+                break;
+                
                 
                 
             
@@ -165,6 +172,7 @@ public class Celdas extends JComponent implements Constantes{
             case 'X': return c;
             case 'Y': return c;
             case 'M': return c;
+            case 'Q': return c;
                 
          }
          return 0;
@@ -176,6 +184,7 @@ public class Celdas extends JComponent implements Constantes{
             case 'Y': return true;
             case 'C': return true;
             case 'P':  return true;
+            case 'Q':  return true;
             default: return false;   
         }
     }

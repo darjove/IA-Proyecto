@@ -215,10 +215,9 @@ public class Mapa extends JComponent implements Constantes {
                     return false;
                 }
             }
-        }else if(celda.x>5 && celda.y>=NUM_CELDAS_HEIGHT-4 ){
+        }else if(celda.x>5 && celda.y>=NUM_CELDAS_HEIGHT-4 && celda.x<NUM_CELDAS_WIDTH-5 ){
             int xc=celda.x;
             int yc=celda.y+1;
-            boolean puedeCruzar=true;
             int veces=4;
             while(veces>0){
                 if(celdas[xc][yc].tipo!='V'){
@@ -324,7 +323,7 @@ public class Mapa extends JComponent implements Constantes {
             }
             
     }
-         else if(celda.y>=NUM_CELDAS_HEIGHT-4){
+         else if(celda.x>=2 && celda.y>=NUM_CELDAS_HEIGHT-4){
             int xc=celda.x-2;
             int yc=celda.y;
             int veces=4;
