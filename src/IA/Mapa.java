@@ -343,7 +343,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoDerecha(Celdas celda) {
-        if(celdas[celda.x+1][celda.y].esPasoPeatonal()  && celda.y<NUM_CELDAS_HEIGHT-1 && celda.y>2 && celda.x>2 && celda.x<NUM_CELDAS_WIDTH-6) {
+        if(celdas[celda.x+1][celda.y].esPasoPeatonal()  && celda.y<NUM_CELDAS_HEIGHT-4 && celda.y>2 && celda.x>2 && celda.x<NUM_CELDAS_WIDTH-6) {
             int xc=celda.x+1;
             int yc=celda.y;
             int veces=4;

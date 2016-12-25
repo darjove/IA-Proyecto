@@ -30,7 +30,6 @@ public class Lienzo extends Canvas implements Constantes{
       cartero= new Cartero(mapa);
       autos= new Autos[5];
       Point peat= new Point(8,4);
-      peaton  = new Peaton(mapa,peat,1);
       cuadras= new Cuadra[3][6];
       
       
@@ -69,9 +68,9 @@ public class Lienzo extends Canvas implements Constantes{
       pmax.y=18-6;
       autos[2]= new Autos(mapa,pmin,pmax);
       pmin.x=7;
-      pmin.y=NUM_CELDAS_HEIGHT-8;
+      pmin.y=NUM_CELDAS_HEIGHT-7;
       pmax.x=18;
-      pmax.y=NUM_CELDAS_HEIGHT-3;
+      pmax.y=NUM_CELDAS_HEIGHT-2;
   
       autos[3]= new Autos(mapa,pmin,pmax);
       pmin.x=25;

@@ -29,12 +29,11 @@ public class Micro extends TimerTask implements Constantes{
         celdaMovimiento= new Celdas(p1.x,p1.y, mapa.celdas[p1.x][p1.y].tipo);
         
         micro=new Celdas(celdaMovimiento.x, celdaMovimiento.y,'M');
-        
         peatones= new Peaton[NUM_PEATONES];
-        p1.x=micro.x-1;
+        
         for(int i=0;i<NUM_PEATONES;i++){
-            peatones[i]= new Peaton(mapa,p1,i);
-            p1.x--;
+            xp.x=xp.x-1;
+            peatones[i]= new Peaton(mapa,xp,p1,yp,i+1);
         }
         
 
@@ -47,42 +46,37 @@ public class Micro extends TimerTask implements Constantes{
 
     @Override
     public void run() {
+        mapa.lienzoPadre.repaint();
+        mapa.lienzoPadre.validate();
         moverMicro();
+        mapa.lienzoPadre.repaint();
+        mapa.lienzoPadre.validate();
+
+        
+        for(int i=0;i<NUM_PEATONES;i++){
+                peatones[i].moverPeaton();
+                
+            }
     }
 
     private void moverMicro() {
         if (celdaMovimiento.x==p2.x && celdaMovimiento.y<p3.y && celdaMovimiento.y>=p2.y){
             moverAbajo();
-            
-            for(int i=0;i<NUM_PEATONES;i++){
-                peatones[i].moverPeaton(celdaMovimiento, 'D');
-                
-            }
+      
         }
         else if (celdaMovimiento.x>=p1.x && celdaMovimiento.y==p1.y && celdaMovimiento.x<p2.x){
             moverDerecha();
-            
-            for(int i=0;i<NUM_PEATONES;i++){
-                peatones[i].moverPeaton(celdaMovimiento, 'R');
-                
-            }
+      
         }
         else if (celdaMovimiento.x<=p3.x && celdaMovimiento.y==p3.y && celdaMovimiento.x>p4.x){
             moverIzquierda(); 
             
-            for(int i=0;i<NUM_PEATONES;i++){
-                peatones[i].moverPeaton(celdaMovimiento, 'L');
-                
-            }
+    
         
         }
         else if (celdaMovimiento.x==p4.x && celdaMovimiento.y<=p4.y && celdaMovimiento.y>=p1.y){
             moverArriba();
-            
-            for(int i=0;i<NUM_PEATONES;i++){
-                peatones[i].moverPeaton(celdaMovimiento, 'U');
-                
-            }
+  
         }           
         
    
@@ -99,7 +93,6 @@ public class Micro extends TimerTask implements Constantes{
 
                 celdaMovimiento.y=celdaMovimiento.y+1;
                 celdaMovimiento.sprite=1;
-                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].sprite=1;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='M';
                 
 
@@ -116,7 +109,6 @@ public class Micro extends TimerTask implements Constantes{
             mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo=t;
             celdaMovimiento.x=celdaMovimiento.x+1;
             celdaMovimiento.sprite=0;
-            mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].sprite=0;
             mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='M';
 
    
@@ -133,9 +125,8 @@ public class Micro extends TimerTask implements Constantes{
             
                 celdaMovimiento.x=celdaMovimiento.x-1;
                 celdaMovimiento.sprite=2;
-                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].sprite=2;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='M';
-
+                
           
 
   
