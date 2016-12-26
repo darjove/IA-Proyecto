@@ -20,8 +20,7 @@ public class Mapa extends JComponent implements Constantes {
 
         crearCarreteras();
         crearEdificios();
-
-        crearPortales();
+        celdas[NUM_CELDAS_WIDTH-1][0].tipo='K';
      
         crearParadas();
         
@@ -30,19 +29,14 @@ public class Mapa extends JComponent implements Constantes {
         this.setSize(TAM_WIDTH, TAM_HEIGHT);
     }
  
-    private void crearPortales(){
-        
-        celdas[10][2]= new Celdas(10+(10 * TAM_CELDA), 2 + (2 * TAM_CELDA),'P');
-        celdas[10][8]=new  Celdas(10+(10 * TAM_CELDA), 8 + (8 * TAM_CELDA),'P');
-        celdas[20][11]=new  Celdas(20+(20 * TAM_CELDA), 11 + (11 * TAM_CELDA),'P');
 
-    }
     
     private void crearEdificios(){
         crearDepartamentos(2,4);
         crearDepartamentos(2,NUM_CELDAS_HEIGHT-5);
         crearCasas(2,3);
         crearCasas(2,9);
+        crearCasas(2,NUM_CELDAS_HEIGHT-4);
         crearCasas(2,10);
   
         

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -220,10 +221,13 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
         colaEstados.clear();
         historial.clear();
         pasos.clear();
-        if(nDestinos<=0){
-            this.cancel();
+        if(nDestinos==0){
+            exito=false;
+            this.buscar(cartero.celdaMovimiento.x, cartero.celdaMovimiento.y, new Estado(NUM_CELDAS_WIDTH-1,1,'N',null));
+            this.calcularRuta();
+            nDestinos--;
         }
-        else{
+        else if(nDestinos>0){
             
             exito=false;
             this.buscar(cartero.celdaMovimiento.x, cartero.celdaMovimiento.y, cartero.inteligencia.destinos.remove(nDestinos-1));
@@ -232,12 +236,19 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
             nDestinos--;
             
         }
+        else if(nDestinos<0){
+            JOptionPane.showMessageDialog(null, "Cartero llegó a correos ");
+            this.cancel();
+             
+        }
         
+
         
     }
     
    
    }
-       
+
+
    }   
 

@@ -3,6 +3,7 @@ package IA;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.TimerTask;
 
 public class Cartero implements Constantes{
@@ -10,18 +11,19 @@ public class Cartero implements Constantes{
     public Celdas cartero;
     public Celdas celdaMovimiento;
     public BusquedaAnchura inteligencia;
+    public ArrayList<Portal> portales;
+    public static int nCartas;
 
 
 
-    public Cartero(Mapa mapa) {
+    public Cartero(Mapa mapa, ArrayList<Portal> portales) {
         this.mapa=mapa;
+        this.portales=portales;
         celdaMovimiento= new Celdas(NUM_CELDAS_WIDTH-1,1,mapa.celdas[NUM_CELDAS_WIDTH-1][1].tipo);
 
 
         cartero=new Celdas(NUM_CELDAS_WIDTH-1,1,mapa.celdas[NUM_CELDAS_WIDTH-1][1].tipo);
-        celdaMovimiento.nCartas=NUM_CARTAS;
-        System.out.println(celdaMovimiento.nCartas);
-        cartero.nCartas=NUM_CARTAS;
+        nCartas=NUM_CARTAS;
         mapa.celdas[cartero.x][cartero.y].tipo='Z';
         inteligencia= new BusquedaAnchura(mapa,this);
         mapa.repaint();
@@ -64,10 +66,21 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
+                int j=0;
+                if(celdaMovimiento.tipo=='P'){
+                    for(int i=0;i<portales.size();i++){
+                        if(portales.get(i).portal.x==celdaMovimiento.x && portales.get(i).portal.y==celdaMovimiento.y){
+                            j=i;
+                            
+                        }
+                    }
+                    
+                    nCartas=nCartas-portales.get(j).nCartas;
+                }
+                
                 return true;
      
-  
+                
                         
             
             }
@@ -96,7 +109,17 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J'; 
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
+                int j=0;
+                if(celdaMovimiento.tipo=='P'){
+                    for(int i=0;i<portales.size();i++){
+                        if(portales.get(i).portal.x==celdaMovimiento.x && portales.get(i).portal.y==celdaMovimiento.y){
+                            j=i;
+                            
+                        }
+                    }
+                    
+                    nCartas=nCartas-portales.get(j).nCartas;
+                }
                 return true;
   
 
@@ -123,7 +146,18 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
+                int j=0;
+                if(celdaMovimiento.tipo=='P'){
+                    for(int i=0;i<portales.size();i++){
+                        if(portales.get(i).portal.x==celdaMovimiento.x && portales.get(i).portal.y==celdaMovimiento.y){
+                            j=i;
+                            
+                        }
+                    }
+                    
+                    nCartas=nCartas-portales.get(j).nCartas;
+                }
+                
                 return true;
   
             }
@@ -150,7 +184,16 @@ public class Cartero implements Constantes{
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                        mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
+                        int j=0;
+                        if(celdaMovimiento.tipo=='P'){
+                            for(int i=0;i<portales.size();i++){
+                            if(portales.get(i).portal.x==celdaMovimiento.x && portales.get(i).portal.y==celdaMovimiento.y){
+                                j=i;
+
+                            }
+                            }
+                        nCartas=nCartas-portales.get(j).nCartas;
+                        }
                         return true;
                            
 

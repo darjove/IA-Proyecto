@@ -5,17 +5,21 @@
  */
 package IA;
 
+
 /**
  *
  * @author dario
  */
-public class Portal {
+public class Portal implements Constantes{
     Celdas portal;
     int nCartas;
     Mapa mapa;
     
     public Portal(Mapa mapa, int x, int y, int nCartas){
         this.mapa=mapa;
+        this.nCartas=nCartas;
         
+        portal=new Celdas(x,y,'P');
+        this.mapa.celdas[portal.x][portal.y].tipo='P';
     }
 }

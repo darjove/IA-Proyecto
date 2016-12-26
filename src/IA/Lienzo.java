@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import java.util.Timer;
 
@@ -25,9 +26,13 @@ public class Lienzo extends Canvas implements Constantes{
     public Timer lanzadorTareas;
     public Micro micro;
     public Cuadra[][] cuadras;
+    public ArrayList <Portal> portales;
     public Lienzo(){
-      this.mapa=new Mapa(this);  
-      cartero= new Cartero(mapa);
+      this.mapa=new Mapa(this); 
+      
+      portales= new ArrayList<>();
+      crearPortales();
+      cartero= new Cartero(mapa, portales);
       autos= new Autos[5];
       Point peat= new Point(8,4);
       cuadras= new Cuadra[3][6];
@@ -53,7 +58,7 @@ public class Lienzo extends Canvas implements Constantes{
           
       }
       
-      imprimirMapa();
+    
       Point pmin=new Point(1,1);
       Point pmax= new Point(6,18);
       autos[0]= new Autos(mapa,pmin,pmax);
@@ -88,10 +93,10 @@ public class Lienzo extends Canvas implements Constantes{
             repaint();
           }
       });
-      
-      cartero.inteligencia.destinos.add(new Estado(10,8,'N',null));
-      cartero.inteligencia.destinos.add(new Estado(10,2,'N',null));
-      cartero.inteligencia.destinos.add(new Estado(20,11,'N',null));
+      for(int i=0;i<portales.size();i++){
+          cartero.inteligencia.destinos.add(new Estado(portales.get(i).portal.x,portales.get(i).portal.y,'N',null));
+      }
+        
       cartero.inteligencia.buscar(cartero.celdaMovimiento.x, cartero.celdaMovimiento.y, cartero.inteligencia.destinos.get(cartero.inteligencia.nDestinos-1));
       
       cartero.inteligencia.calcularRuta();  
@@ -122,5 +127,14 @@ public class Lienzo extends Canvas implements Constantes{
     @Override
     public void paint(Graphics g) {
         update(g);
+    }
+    public void crearPortales(){
+        
+        portales.add(new Portal(mapa,9,16,2));
+        portales.add(new Portal(mapa,10,9,3));
+        portales.add(new Portal(mapa,22,9,1));
+        
+        
+        
     }
 }

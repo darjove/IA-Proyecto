@@ -13,6 +13,7 @@ import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.text.AttributedCharacterIterator;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -31,7 +32,7 @@ public class Celdas extends  JComponent implements Constantes{
     
     BufferedImage camino, block, portal, acera, peaton, carretera_inf,carretera_sup,carretera_der,
                 carretera_izq, carretera_esq, departamento, casa, jugadorprincipio, peatonal_ver, 
-                peatonal_hor, micro,carta, parada, bparada;
+                peatonal_hor, micro,carta, parada, bparada, correo;
     BufferedImage sjugador[][], jugador, svehiculo[], vehiculo;
     
     public Celdas(int x, int y, char tipo){
@@ -44,6 +45,7 @@ public class Celdas extends  JComponent implements Constantes{
         
         try {
             jugador = ImageIO.read(new File("imagenes/sprites_postman.png"));
+            correo = ImageIO.read(new File("imagenes/correo.png"));
             carta = ImageIO.read(new File("imagenes/carta.png"));
             parada= ImageIO.read(new File("imagenes/parada.png"));
             bparada= ImageIO.read(new File("imagenes/bparada.png"));
@@ -115,14 +117,16 @@ public class Celdas extends  JComponent implements Constantes{
                 g.drawImage(carretera_esq, x,y,this); break;
             case 'D':
                 g.drawImage(departamento, x,y,this); break;
+            case 'K':
+                g.drawImage(correo,x,y,this); break;
             case 'J':
                 g.drawImage(sjugador[xsprite][ysprite], x,y,this); 
               
                 
                 int i=0, j=0;
-                int n= nCartas;
+                int n= Cartero.nCartas;
                 while(n>0){
-                    g.drawImage(carta, x+20-12*i,y+6-10*j,this);
+                    g.drawImage(carta, x+20-12*i,y+3-10*j,this);
                     n--; 
                     i++;
                     if(i==7){
