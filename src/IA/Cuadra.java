@@ -26,7 +26,7 @@ public class Cuadra implements Constantes{
         for(int i=x;i<d;i++){
             for(int j=y;j<a;j++){
                 
-                mapa.celdas[i][j].npeatones=n;
+                mapa.celdas[i][j].n=n;
             }
         }
     }

@@ -10,7 +10,8 @@ public interface Constantes {
     public final int NUM_CELDAS_HEIGHT=20;
     public final int TAM_WIDTH=TAM_CELDA*NUM_CELDAS_WIDTH;
     public final int TAM_HEIGHT=TAM_CELDA*NUM_CELDAS_HEIGHT;
-    public final int NUM_PEATONES=3;
+    public final int NUM_PEATONES=10;
+    public int NUM_CARTAS=15;
     public final char JUGADOR='J';
     public final char CAMINO='C';
     public final char CARRETERA_INF='I';

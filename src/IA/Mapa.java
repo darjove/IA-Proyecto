@@ -23,7 +23,7 @@ public class Mapa extends JComponent implements Constantes {
 
         crearPortales();
      
-        
+        crearParadas();
         
         repaint();
         
@@ -380,6 +380,19 @@ public class Mapa extends JComponent implements Constantes {
 
     void carteroEnPortal() {
         
+    }
+
+    private void crearParadas() {
+        celdas[27][7].tipo='W';
+        celdas[27][8].tipo='A';
+        celdas[33][7].tipo='W';
+        celdas[33][8].tipo='A';
+        celdas[27][12].tipo='W';
+        celdas[27][11].tipo='A';
+        celdas[33][12].tipo='W';
+        celdas[33][11].tipo='A';
+        
+        repaint();
     }
 
  

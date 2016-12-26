@@ -73,7 +73,7 @@ public class Peaton implements Constantes {
   
         }           
                     
-   
+        
          
   
     
@@ -82,18 +82,23 @@ public class Peaton implements Constantes {
     private void moverAbajo() {
         char temp = celdaMovimiento.tipo;
         celdaMovimiento.tipo = mapa.celdas[celdaMovimiento.x][celdaMovimiento.y + 1].tipo;
+        System.out.println(celdaMovimiento.tipo);
         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo = temp;
         celdaMovimiento.y = celdaMovimiento.y + 1;
         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo = 'O';
-       
+        
     }
 
     private void moverDerecha() {
         char temp = celdaMovimiento.tipo;
+        
         celdaMovimiento.tipo = mapa.celdas[celdaMovimiento.x + 1][celdaMovimiento.y].tipo;
+        
         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo = temp;
         celdaMovimiento.x = celdaMovimiento.x + 1;
         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo = 'O';
+        
+        
     }
 
     private void moverIzquierda() {

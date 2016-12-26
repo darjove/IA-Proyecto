@@ -16,7 +16,12 @@ public class Cartero implements Constantes{
     public Cartero(Mapa mapa) {
         this.mapa=mapa;
         celdaMovimiento= new Celdas(NUM_CELDAS_WIDTH-1,1,mapa.celdas[NUM_CELDAS_WIDTH-1][1].tipo);
+
+
         cartero=new Celdas(NUM_CELDAS_WIDTH-1,1,mapa.celdas[NUM_CELDAS_WIDTH-1][1].tipo);
+        celdaMovimiento.nCartas=NUM_CARTAS;
+        System.out.println(celdaMovimiento.nCartas);
+        cartero.nCartas=NUM_CARTAS;
         mapa.celdas[cartero.x][cartero.y].tipo='Z';
         inteligencia= new BusquedaAnchura(mapa,this);
         mapa.repaint();
@@ -59,7 +64,7 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-                
+                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
                 return true;
      
   
@@ -91,7 +96,7 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J'; 
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
-
+                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
                 return true;
   
 
@@ -118,6 +123,7 @@ public class Cartero implements Constantes{
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
+                mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
                 return true;
   
             }
@@ -144,6 +150,7 @@ public class Cartero implements Constantes{
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].xsprite=celdaMovimiento.xsprite;
                         mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].ysprite=celdaMovimiento.ysprite;
+                        mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].nCartas=celdaMovimiento.nCartas;
                         return true;
                            
 

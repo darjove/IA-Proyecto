@@ -29,7 +29,8 @@ public class Micro extends TimerTask implements Constantes{
         celdaMovimiento= new Celdas(p1.x,p1.y, mapa.celdas[p1.x][p1.y].tipo);
         
         micro=new Celdas(celdaMovimiento.x, celdaMovimiento.y,'M');
-        peatones= new Peaton[NUM_PEATONES];
+        npeatones=NUM_PEATONES;
+        peatones= new Peaton[npeatones];
         
         for(int i=0;i<NUM_PEATONES;i++){
             xp.x=xp.x-1;
@@ -53,7 +54,7 @@ public class Micro extends TimerTask implements Constantes{
         mapa.lienzoPadre.validate();
 
         
-        for(int i=0;i<NUM_PEATONES;i++){
+        for(int i=0;i<npeatones;i++){
                 peatones[i].moverPeaton();
                 
             }
@@ -79,14 +80,73 @@ public class Micro extends TimerTask implements Constantes{
   
         }           
         
-   
-         
+         if(celdaMovimiento.tipo=='W' && npeatones>0){
+            if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y-1].tipo=='A' || mapa.celdas[celdaMovimiento.x][celdaMovimiento.y-1].tipo=='O'){
+                int x=celdaMovimiento.x;
+                while(mapa.celdas[x][celdaMovimiento.y-1].tipo=='O'){
+                    if(mapa.celdas[x][celdaMovimiento.y-1].tipo=='O'){
+                        x++;
+                    }
+                    else{
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo=peatones[npeatones-1].celdaMovimiento.tipo;
+                        peatones[npeatones-1].celdaMovimiento.y=celdaMovimiento.y-1;
+                        peatones[npeatones-1].celdaMovimiento.x=x;
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo='O';
+                        mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='W';  
+                    }
+                    
+                }
+                           
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo=peatones[npeatones-1].celdaMovimiento.tipo;
+                        peatones[npeatones-1].celdaMovimiento.y=celdaMovimiento.y-1;
+                        peatones[npeatones-1].celdaMovimiento.x=x;
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo='O';
+                        mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='W';  
+                    
+                    npeatones--;
+            }
+            else if(mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].tipo=='A' || mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].tipo=='O' ){
+                int x=celdaMovimiento.x;
+                while(mapa.celdas[x][celdaMovimiento.y+1].tipo=='O'){
+                    if(mapa.celdas[x][celdaMovimiento.y+1].tipo=='O'){
+                        x++;
+                    }
+                    else{
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo=peatones[npeatones-1].celdaMovimiento.tipo;
+                        peatones[npeatones-1].celdaMovimiento.y=celdaMovimiento.y+1;
+                        peatones[npeatones-1].celdaMovimiento.x=x;
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo='O';
+                        mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='W';  
+                    }
+                    
+                }
+                           
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo=peatones[npeatones-1].celdaMovimiento.tipo;
+                        peatones[npeatones-1].celdaMovimiento.y=celdaMovimiento.y+1;
+                        peatones[npeatones-1].celdaMovimiento.x=x;
+                        mapa.celdas[peatones[npeatones-1].celdaMovimiento.x][peatones[npeatones-1].celdaMovimiento.y].tipo='O';
+                        mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='W';  
+                    
+                    npeatones--;
+            }
+
   
     
     }
+         if(celdaMovimiento.x==27 && celdaMovimiento.y==7) mapa.celdas[27][7].tipo='B';
+         else if(celdaMovimiento.x==33 && celdaMovimiento.y==7) mapa.celdas[33][7].tipo='B';
+         else if(celdaMovimiento.x==27 && celdaMovimiento.y==12) mapa.celdas[27][12].tipo='B';
+         else if(celdaMovimiento.x==33 && celdaMovimiento.y==12) mapa.celdas[33][12].tipo='B';
+         else{
+             mapa.celdas[27][7].tipo='W';
+             mapa.celdas[33][7].tipo='W';
+             mapa.celdas[27][12].tipo='W';
+             mapa.celdas[33][12].tipo='W';
+         }
+    }
 
     private void moverAbajo() {
-  if (celdaMovimiento.y<NUM_CELDAS_HEIGHT-1 && mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].noHayPersona()){
+    if (celdaMovimiento.y<NUM_CELDAS_HEIGHT-1 && mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].noHayPersona()){
                 char t=celdaMovimiento.saberTipo();
                 celdaMovimiento.tipo=mapa.celdas[celdaMovimiento.x][celdaMovimiento.y+1].tipo;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo=t;                
@@ -110,8 +170,6 @@ public class Micro extends TimerTask implements Constantes{
             celdaMovimiento.x=celdaMovimiento.x+1;
             celdaMovimiento.sprite=0;
             mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='M';
-
-   
         }   
     }
 
@@ -121,10 +179,7 @@ public class Micro extends TimerTask implements Constantes{
                 char t=celdaMovimiento.saberTipo();
                 celdaMovimiento.tipo=mapa.celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo=t;                
-
-            
                 celdaMovimiento.x=celdaMovimiento.x-1;
-                celdaMovimiento.sprite=2;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='M';
                 
           
@@ -145,7 +200,7 @@ public class Micro extends TimerTask implements Constantes{
 
                 
                 celdaMovimiento.y=celdaMovimiento.y-1;
-                celdaMovimiento.sprite=3;
+               
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].sprite=3;
                 mapa.celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='M';
 

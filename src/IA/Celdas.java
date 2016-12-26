@@ -19,17 +19,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
-public class Celdas extends JComponent implements Constantes{
+public class Celdas extends  JComponent implements Constantes{
     int x;
     int y;
     char tipo;
     int xsprite;
     int ysprite;
     int sprite;
-    int npeatones;
+    int n;
+    int nCartas;
+    
     BufferedImage camino, block, portal, acera, peaton, carretera_inf,carretera_sup,carretera_der,
                 carretera_izq, carretera_esq, departamento, casa, jugadorprincipio, peatonal_ver, 
-                peatonal_hor, micro;
+                peatonal_hor, micro,carta, parada, bparada;
     BufferedImage sjugador[][], jugador, svehiculo[], vehiculo;
     
     public Celdas(int x, int y, char tipo){
@@ -42,6 +44,9 @@ public class Celdas extends JComponent implements Constantes{
         
         try {
             jugador = ImageIO.read(new File("imagenes/sprites_postman.png"));
+            carta = ImageIO.read(new File("imagenes/carta.png"));
+            parada= ImageIO.read(new File("imagenes/parada.png"));
+            bparada= ImageIO.read(new File("imagenes/bparada.png"));
             peaton = ImageIO.read(new File("imagenes/peaton.png"));
             block = ImageIO.read(new File("imagenes/block.png"));
             camino = ImageIO.read(new File("imagenes/camino.png"));
@@ -90,8 +95,6 @@ public class Celdas extends JComponent implements Constantes{
         switch(tipo){
             case 'C':
                 g.drawImage(camino, x, y,this); break;
-            case 'B':
-                g.drawImage(block, x, y,this); break;
             case 'P':
                 g.drawImage(portal, x, y,this); 
 
@@ -113,7 +116,22 @@ public class Celdas extends JComponent implements Constantes{
             case 'D':
                 g.drawImage(departamento, x,y,this); break;
             case 'J':
-                g.drawImage(sjugador[xsprite][ysprite], x,y,this); break;
+                g.drawImage(sjugador[xsprite][ysprite], x,y,this); 
+              
+                
+                int i=0, j=0;
+                int n= nCartas;
+                while(n>0){
+                    g.drawImage(carta, x+20-12*i,y+6-10*j,this);
+                    n--; 
+                    i++;
+                    if(i==7){
+                        j++;
+                        i=0;
+                    }
+                }
+                    
+                break;
                 
             case 'V':
                 g.drawImage(svehiculo[sprite], x,y,this); break;
@@ -129,9 +147,15 @@ public class Celdas extends JComponent implements Constantes{
                 g.drawImage(micro, x,y,this); break;
             case 'Q':
                 g.drawImage(camino, x, y, this); 
-                String np= String.valueOf(npeatones);
+                String np= String.valueOf(this.n);
                 g.setColor(Color.WHITE);
                 g.drawString(np, x+10, y+10);
+                break;
+            case 'W':
+                g.drawImage(parada,x,y,this);
+                break;
+            case 'B':
+                g.drawImage(bparada, x, y, this);
                 break;
                 
                 
@@ -185,6 +209,8 @@ public class Celdas extends JComponent implements Constantes{
             case 'C': return true;
             case 'P':  return true;
             case 'Q':  return true;
+                 
+           
             default: return false;   
         }
     }
@@ -196,6 +222,7 @@ public class Celdas extends JComponent implements Constantes{
             case 'O': return false;
             case 'D': return false;
             case 'H': return false;
+            
             default: return true; 
         }
     }

@@ -110,7 +110,7 @@ public class Lienzo extends Canvas implements Constantes{
     public void imprimirMapa(){
         for(int i=0; i<NUM_CELDAS_WIDTH;i++){
             for(int j=0; j<NUM_CELDAS_HEIGHT;j++){
-                System.out.print(mapa.celdas[i][j].npeatones + " ");
+                System.out.print(mapa.celdas[i][j].n + " ");
             }
             System.out.println("");
         }

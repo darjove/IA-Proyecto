@@ -96,7 +96,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
         if ( e.y > 0 ) {
             if ( mapa.celdas[e.x][e.y-1].puedeMoverse() ) { 
                 Estado arriba=new Estado(e.x,e.y-1,'U',e);
-                arriba.prioridad=mapa.celdas[e.x][e.y - 1].npeatones;
+                arriba.prioridad=mapa.celdas[e.x][e.y - 1].n;
                  if ( !historial.contains(arriba)) {
                     colaEstados.add(arriba);
                     historial.add(arriba);
@@ -116,7 +116,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
             if ( mapa.celdas[e.x][e.y+1].puedeMoverse()) {
                  Estado abajo=new Estado(e.x,e.y+1,'D',e);  
                  
-                    abajo.prioridad=mapa.celdas[e.x][e.y+1].npeatones;
+                    abajo.prioridad=mapa.celdas[e.x][e.y+1].n;
                
                
                  
@@ -138,7 +138,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
         if ( e.x > 0 ) {
             if (mapa.celdas[e.x-1][e.y].puedeMoverse()) {
                 Estado izquierda=new Estado(e.x-1,e.y,'L',e);
-                    izquierda.prioridad=mapa.celdas[e.x-1][e.y].npeatones;
+                    izquierda.prioridad=mapa.celdas[e.x-1][e.y].n;
                
                
                 
@@ -163,7 +163,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
         if ( e.x < NUM_CELDAS_WIDTH-1 ) {
             if ( mapa.celdas[e.x+1][e.y].puedeMoverse() ) {
                Estado derecha=new Estado(e.x+1,e.y,'R',e); 
-                    derecha.prioridad=mapa.celdas[e.x+1][e.y].npeatones;
+                    derecha.prioridad=mapa.celdas[e.x+1][e.y].n;
                
                
                
@@ -224,6 +224,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
             this.cancel();
         }
         else{
+            
             exito=false;
             this.buscar(cartero.celdaMovimiento.x, cartero.celdaMovimiento.y, cartero.inteligencia.destinos.remove(nDestinos-1));
             this.calcularRuta();
