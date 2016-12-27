@@ -4,7 +4,7 @@ package IA;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.TimerTask;
+
 
 public class Cartero implements Constantes{
 

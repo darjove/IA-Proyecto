@@ -23,6 +23,7 @@ public class Lienzo extends Canvas implements Constantes{
     public Mapa mapa;
     public Autos[] autos; 
     public Cartero cartero;
+    public Ladron ladron;
     public Peaton peaton;
     public Timer lanzadorTareas;
     public Micro micro;
@@ -34,7 +35,9 @@ public class Lienzo extends Canvas implements Constantes{
       portales= new ArrayList<>();
       crearPortales();
       cartero= new Cartero(mapa, portales);
+      ladron= new Ladron(mapa, cartero);
       autos= new Autos[5];
+      
       Point peat= new Point(8,4);
       cuadras= new Cuadra[3][6];
       
@@ -102,9 +105,10 @@ public class Lienzo extends Canvas implements Constantes{
       
       cartero.inteligencia.calcularRuta();  
       cartero.inteligencia.nDestinos--;
-      
+      ladron.inteligencia.destinos.add(new Estado(cartero.celdaMovimiento.x, cartero.celdaMovimiento.y,'N',null));
       lanzadorTareas= new Timer();
       lanzadorTareas.scheduleAtFixedRate(cartero.inteligencia, 0,500);
+      lanzadorTareas.scheduleAtFixedRate(ladron.inteligencia,0,450);
       lanzadorTareas.scheduleAtFixedRate(micro,0,700);
 
       lanzadorTareas.scheduleAtFixedRate(autos[0],0,300);

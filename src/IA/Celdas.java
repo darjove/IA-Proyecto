@@ -34,7 +34,7 @@ public class Celdas extends  JComponent implements Constantes{
     
     BufferedImage camino, block, portal, acera, peaton, carretera_inf,carretera_sup,carretera_der,
                 carretera_izq, carretera_esq, departamento, casa, jugadorprincipio, peatonal_ver, 
-                peatonal_hor, micro,carta, parada, bparada, correo;
+                peatonal_hor, micro,carta, parada, bparada, correo, ladron;
     BufferedImage sjugador[][], jugador, svehiculo[], vehiculo;
     
     public Celdas(int x, int y, char tipo){
@@ -47,6 +47,7 @@ public class Celdas extends  JComponent implements Constantes{
         
         try {
             jugador = ImageIO.read(new File("imagenes/sprites_postman.png"));
+            ladron = ImageIO.read(new File("imagenes/ladron.png"));
             correo = ImageIO.read(new File("imagenes/correo.png"));
             carta = ImageIO.read(new File("imagenes/carta.png"));
             parada= ImageIO.read(new File("imagenes/parada.png"));
@@ -129,8 +130,7 @@ public class Celdas extends  JComponent implements Constantes{
                 int n= NUM_CARTAS;
                 while(n>0){
                     g.setColor(Color.white);
-                    if(Cartero.cartas[n-1]!=0){
-                        
+                    if(Cartero.cartas[n-1]!=0){         
                         g.drawImage(carta, x+10-12*i,y+2-10*j,this);
                         g.drawString(String.valueOf(Cartero.cartas[n-1]), x+10-12*i,y+10-10*j);
                     }
@@ -169,9 +169,9 @@ public class Celdas extends  JComponent implements Constantes{
             case 'B':
                 g.drawImage(bparada, x, y, this);
                 break;
-                
-                
-                
+            case 'F':
+                g.drawImage(ladron, x, y, this);
+                break;
             
                   
           
@@ -221,10 +221,8 @@ public class Celdas extends  JComponent implements Constantes{
             case 'C': return true;
             case 'P':  return true;
             case 'Q':  return true;
-            case 'I':  return true;
+            case 'J':  return true;
 
-            case 'L':  return true;
-            case 'E':  return true;
                  
            
             default: return false;   

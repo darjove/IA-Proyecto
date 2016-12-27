@@ -231,7 +231,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoArriba(Celdas celda) {
-        if(celdas[celda.x][celda.y-1].esPasoPeatonal()  && celda.x<NUM_CELDAS_WIDTH-2 && celda.x>3 && celda.y>2) {
+        if(celdas[celda.x][celda.y-1].esPasoPeatonal()  && celda.x<NUM_CELDAS_WIDTH-3 && celda.x>3 && celda.y>2 && celda.y<NUM_CELDAS_WIDTH-4) {
             int xc=celda.x;
             int yc=celda.y-1;
             boolean puedeCruzar=true;
