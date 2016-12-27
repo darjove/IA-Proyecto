@@ -126,10 +126,10 @@ public class Celdas extends  JComponent implements Constantes{
                 int i=0, j=0;
                 int n= Cartero.nCartas;
                 while(n>0){
-                    g.drawImage(carta, x+20-12*i,y+3-10*j,this);
+                    g.drawImage(carta, x+10-12*i,y+2-10*j,this);
                     n--; 
                     i++;
-                    if(i==7){
+                    if(i==4){
                         j++;
                         i=0;
                     }
@@ -213,6 +213,12 @@ public class Celdas extends  JComponent implements Constantes{
             case 'C': return true;
             case 'P':  return true;
             case 'Q':  return true;
+            case 'I':  return true;
+            case 'S':  return true;
+            case 'R':  return true;
+            case 'L':  return true;
+            case 'E':  return true;
+            
                  
            
             default: return false;   

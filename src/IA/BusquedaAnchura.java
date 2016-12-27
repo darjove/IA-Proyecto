@@ -71,13 +71,11 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
         }
         
         if ( exito ){
-            System.out.println("Ruta calculada");
             return true;
         }
             
         
         else {
-            System.out.println("La ruta no pudo calcularse");
             return false;
         }
             
@@ -124,9 +122,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
                  if ( !historial.contains(abajo)) {
                     colaEstados.add(abajo);
                     historial.add(abajo);
-                    //laberinto.celdas[e.x][e.y+1].tipo='A';
                     if ( abajo.equals(objetivo)) {
-                        //laberinto.celdas[e.x][e.y+1].tipo='P';
                         objetivo=abajo;
                         exito=true;
                     }
@@ -237,7 +233,7 @@ public class BusquedaAnchura extends TimerTask implements Constantes {
             
         }
         else if(nDestinos<0){
-            JOptionPane.showMessageDialog(null, "Cartero llegó a correos ");
+            JOptionPane.showMessageDialog(null, "Cartero llegó a correos, todas las cartas han sido entregadas ");
             this.cancel();
              
         }

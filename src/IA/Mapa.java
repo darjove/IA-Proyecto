@@ -231,7 +231,7 @@ public class Mapa extends JComponent implements Constantes {
     }
 
     boolean noHayAutoArriba(Celdas celda) {
-        if(celdas[celda.x][celda.y-1].esPasoPeatonal()  && celda.x<NUM_CELDAS_WIDTH-2 && celda.x>2 && celda.y>2) {
+        if(celdas[celda.x][celda.y-1].esPasoPeatonal()  && celda.x<NUM_CELDAS_WIDTH-2 && celda.x>3 && celda.y>2) {
             int xc=celda.x;
             int yc=celda.y-1;
             boolean puedeCruzar=true;
@@ -262,11 +262,11 @@ public class Mapa extends JComponent implements Constantes {
                 }
             }
 
-        }else if(celda.x<=2){
+        }else if(celda.x<=2 && celda.y>1){
             int xc=celda.x;
             int yc=celda.y-2;
             boolean puedeCruzar=true;
-            int veces=4;
+            int veces=2;
             while(veces>0){
                 if(celdas[xc][yc].tipo!='V'){
                     xc++;

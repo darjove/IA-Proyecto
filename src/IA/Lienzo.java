@@ -130,7 +130,7 @@ public class Lienzo extends Canvas implements Constantes{
     }
     public void crearPortales(){
         
-        portales.add(new Portal(mapa,9,16,2));
+        portales.add(new Portal(mapa,9,16,3));
         portales.add(new Portal(mapa,10,9,3));
         portales.add(new Portal(mapa,22,9,1));
         
