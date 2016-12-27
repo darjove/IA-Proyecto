@@ -1,6 +1,7 @@
-
 package IA;
 
+import static IA.Constantes.NUM_CELDAS_HEIGHT;
+import static IA.Constantes.NUM_CELDAS_WIDTH;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -103,7 +104,7 @@ public class Lienzo extends Canvas implements Constantes{
       cartero.inteligencia.nDestinos--;
       
       lanzadorTareas= new Timer();
-      lanzadorTareas.scheduleAtFixedRate(cartero.inteligencia, 0,600);
+      lanzadorTareas.scheduleAtFixedRate(cartero.inteligencia, 0,500);
       lanzadorTareas.scheduleAtFixedRate(micro,0,700);
 
       lanzadorTareas.scheduleAtFixedRate(autos[0],0,300);
@@ -129,12 +130,24 @@ public class Lienzo extends Canvas implements Constantes{
         update(g);
     }
     public void crearPortales(){
+        int vector[]= new int[2];
+        vector[0]=1;
+        vector[1]=3;
+
+        portales.add(new Portal(mapa,9,16,vector.length,vector)); //mapa, celda en x, celda en y, cantidadCartas, numCartas
+        int vector1[]= new int[2];
+        vector1[0]=5;
+        vector1[1]=6;
+
+        portales.add(new Portal(mapa,10,9,vector1.length,vector1));
+        int vector2[]= new int[2];
+        vector2[0]=2;
+        vector2[1]=4;
+
         
-        portales.add(new Portal(mapa,9,16,3));
-        portales.add(new Portal(mapa,10,9,3));
-        portales.add(new Portal(mapa,22,9,1));
+        portales.add(new Portal(mapa,22,9,vector2.length,vector2));
         
-        
+
         
     }
 }

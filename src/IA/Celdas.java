@@ -1,5 +1,7 @@
 package IA;
 
+import static IA.Constantes.NUM_CARTAS;
+import static IA.Constantes.TAM_CELDA;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -124,9 +126,15 @@ public class Celdas extends  JComponent implements Constantes{
               
                 
                 int i=0, j=0;
-                int n= Cartero.nCartas;
+                int n= NUM_CARTAS;
                 while(n>0){
-                    g.drawImage(carta, x+10-12*i,y+2-10*j,this);
+                    g.setColor(Color.white);
+                    if(Cartero.cartas[n-1]!=0){
+                        
+                        g.drawImage(carta, x+10-12*i,y+2-10*j,this);
+                        g.drawString(String.valueOf(Cartero.cartas[n-1]), x+10-12*i,y+10-10*j);
+                    }
+                        
                     n--; 
                     i++;
                     if(i==4){
@@ -214,11 +222,9 @@ public class Celdas extends  JComponent implements Constantes{
             case 'P':  return true;
             case 'Q':  return true;
             case 'I':  return true;
-            case 'S':  return true;
-            case 'R':  return true;
+
             case 'L':  return true;
             case 'E':  return true;
-            
                  
            
             default: return false;   

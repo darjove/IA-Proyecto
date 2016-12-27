@@ -14,11 +14,12 @@ public class Portal implements Constantes{
     Celdas portal;
     int nCartas;
     Mapa mapa;
-    
-    public Portal(Mapa mapa, int x, int y, int nCartas){
+    int numCartas[];
+    public Portal(Mapa mapa, int x, int y, int nCartas, int numCartas[]){
         this.mapa=mapa;
         this.nCartas=nCartas;
-        
+        this.numCartas=numCartas;
+
         portal=new Celdas(x,y,'P');
         this.mapa.celdas[portal.x][portal.y].tipo='P';
     }
