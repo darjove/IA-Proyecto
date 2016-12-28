@@ -31,6 +31,7 @@ public interface Constantes {
     public final char PEATONAL_VERT = 'Y';
     public final char MICRO = 'M';
     public final int NPORTALES = 3;
+    public final int TRAFICO = 10;
 
     default int numeroAleatorio(int minimo, int maximo) {
         Random random = new Random();

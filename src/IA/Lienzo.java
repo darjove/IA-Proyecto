@@ -57,6 +57,7 @@ public class Lienzo extends Canvas implements Constantes {
 
         }
 
+        mapa.crearCarreteras();
         Point pmin = new Point(1, 1);
         Point pmax = new Point(6, 18);
         autos[0] = new Autos(mapa, pmin, pmax);
@@ -112,6 +113,7 @@ public class Lienzo extends Canvas implements Constantes {
         lanzadorTareas.scheduleAtFixedRate(autos[1], 0, 300);
         lanzadorTareas.scheduleAtFixedRate(autos[2], 0, 500);
         lanzadorTareas.scheduleAtFixedRate(autos[3], 0, 300);
+        
     }
 
     public void imprimirMapa() {

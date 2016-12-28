@@ -68,7 +68,8 @@ public class Mapa extends JComponent implements Constantes {
         }
     }
 
-    private void crearCarreteras() {
+
+    public void crearCarreteras() {
 
         //Crear esquinas
         for (int i = 0; i < NUM_CELDAS_WIDTH; i = i + 6) {
@@ -104,6 +105,11 @@ public class Mapa extends JComponent implements Constantes {
         celdas[x][y + 1] = new Celdas(x + (x * TAM_CELDA), y + 1 + ((y + 1) * TAM_CELDA), 'E');
         celdas[x + 1][y + 1] = new Celdas(x + 1 + ((x + 1) * TAM_CELDA), y + 1 + ((y + 1) * TAM_CELDA), 'E');
 
+        celdas[x][y].n = TRAFICO;
+        celdas[x + 1][y].n = TRAFICO;
+        celdas[x][y + 1].n = TRAFICO;
+        celdas[x + 1][y + 1].n = TRAFICO;
+
         crearPasosPeatonales(x, y);
 
     }
@@ -113,33 +119,49 @@ public class Mapa extends JComponent implements Constantes {
         if (x > 0 && y > 0) {
             celdas[x - 1][y].tipo = 'X';
             celdas[x - 1][y + 1].tipo = 'X';
-
+            celdas[x - 1][y].n = TRAFICO;
+            celdas[x - 1][y + 1].n = TRAFICO;
         }
         if (x < NUM_CELDAS_WIDTH - 4 && y > 0) {
             celdas[x + 2][y].tipo = 'X';
             celdas[x + 2][y + 1].tipo = 'X';
+
+            celdas[x + 2][y].n = TRAFICO;
+            celdas[x + 2][y + 1].n = TRAFICO;
         }
         if (y > 0 && x > 0) {
 
             celdas[x][y - 1].tipo = 'Y';
             celdas[x + 1][y - 1].tipo = 'Y';
+
+            celdas[x][y - 1].n = TRAFICO;
+            celdas[x + 1][y - 1].n = TRAFICO;
         }
         if (y < NUM_CELDAS_HEIGHT - 4 && x > 0) {
             celdas[x][y + 2].tipo = 'Y';
             celdas[x + 1][y + 2].tipo = 'Y';
+
+            celdas[x][y + 2].n = TRAFICO;
+            celdas[x + 1][y + 2].n = TRAFICO;
         }
 
     }
 
     private void crearCarreteraVertical(int x, int y) {
+
         celdas[x][y] = new Celdas(x + (x * TAM_CELDA), y + (y * TAM_CELDA), 'L');
         celdas[x + 1][y] = new Celdas(x + 1 + ((x + 1) * TAM_CELDA), y + (y * TAM_CELDA), 'R');
+        celdas[x][y].n = TRAFICO;
+        celdas[x + 1][y].n = TRAFICO;
+
     }
 
     private void crearCarreteraHorizontal(int x, int y) {
 
         celdas[x][y] = new Celdas(x + (x * TAM_CELDA), y + (y * TAM_CELDA), 'S');
         celdas[x][y + 1] = new Celdas(x + (x * TAM_CELDA), y + 1 + ((y + 1) * TAM_CELDA), 'I');
+        celdas[x][y].n = TRAFICO;
+        celdas[x][y + 1].n = TRAFICO;
     }
 
     @Override

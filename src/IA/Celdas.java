@@ -81,6 +81,7 @@ public class Celdas extends JComponent implements Constantes {
 
     @Override
     public void update(Graphics g) {
+      //  g.drawString(Integer.toString(n), x, y);
         switch (tipo) {
             case 'C':
 //                g.drawImage(camino, x, y, this);
