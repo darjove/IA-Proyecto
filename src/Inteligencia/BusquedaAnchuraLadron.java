@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IA;
+package Inteligencia;
 
 
+import IA.Cartero;
+import IA.Constantes;
+import IA.Ladron;
+import IA.Mapa;
 import java.util.ArrayList;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;

@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IA;
+package Inteligencia;
 
 
+import IA.Cartero;
+import IA.Constantes;
+import IA.Mapa;
 import static IA.Constantes.NUM_CELDAS_HEIGHT;
 import static IA.Constantes.NUM_CELDAS_WIDTH;
 import java.util.ArrayList;

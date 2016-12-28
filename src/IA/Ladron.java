@@ -5,6 +5,7 @@
  */
 package IA;
 
+import Inteligencia.BusquedaAnchuraLadron;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
